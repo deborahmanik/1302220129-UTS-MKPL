@@ -21,15 +21,17 @@ public class TaxFunction {
 	
 	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible, boolean isMarried, int numberOfChildren) {
 		
-		int tax = 0;
-		
-		if (numberOfMonthWorking > 12) {
-			System.err.println("More than 12 month working per year");
-		}
-		
-		if (numberOfChildren > 3) {
-			numberOfChildren = 3;
-		}
+		if (numberOfMonthWorking > 12 || numberOfMonthWorking < 0) {
+            throw new IllegalArgumentException("Invalid working months: must be between 0 and 12.");
+        }
+
+        if (monthlySalary < 0 || otherMonthlyIncome < 0 || deductible < 0) {
+            throw new IllegalArgumentException("Income or deductible cannot be negative.");
+        }
+
+        if (numberOfChildren < 0) {
+            throw new IllegalArgumentException("Number of children cannot be negative.");
+        }
 		
 		int grossIncome = (monthlySalary + otherMonthlyIncome) * numberOfMonthWorking;
 

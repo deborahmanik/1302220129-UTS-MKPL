@@ -13,7 +13,11 @@ public class TaxFunction {
 	 * Jika pegawai sudah memiliki anak maka penghasilan tidak kena pajaknya ditambah sebesar Rp 4.500.000 per anak sampai anak ketiga.
 	 * 
 	 */
-	
+	private static final int BASIC_NON_TAXABLE = 54000000;
+    private static final int MARRIED_ADDITION = 4500000;
+    private static final int CHILD_ADDITION = 1500000;
+    private static final double TAX_RATE = 0.05;
+    private static final int MAX_CHILDREN = 3;
 	
 	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible, boolean isMarried, int numberOfChildren) {
 		

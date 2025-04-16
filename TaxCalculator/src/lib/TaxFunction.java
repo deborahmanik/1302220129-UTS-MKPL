@@ -33,6 +33,8 @@ public class TaxFunction {
             throw new IllegalArgumentException("Number of children cannot be negative.");
         }
 		
+		numberOfChildren = Math.min(numberOfChildren, MAX_CHILDREN);
+		
 		int grossIncome = (monthlySalary + otherMonthlyIncome) * numberOfMonthWorking;
 
 		int nonTaxableIncome = BASIC_NON_TAXABLE;

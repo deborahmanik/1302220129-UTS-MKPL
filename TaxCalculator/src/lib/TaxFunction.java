@@ -32,18 +32,18 @@ public class TaxFunction {
 		}
 		
 		int grossIncome = (monthlySalary + otherMonthlyIncome) * numberOfMonthWorking;
+
+		int nonTaxableIncome = BASIC_NON_TAXABLE;
+        if (isMarried) {
+            nonTaxableIncome += MARRIED_ADDITION;
+        }
+        nonTaxableIncome += numberOfChildren * CHILD_ADDITION;
 		
-		if (isMarried) {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - (54000000 + 4500000 + (numberOfChildren * 1500000))));
-		}else {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - 54000000));
-		}
-		
-		if (tax < 0) {
-			return 0;
-		}else {
-			return tax;
-		}
+		int taxableIncome = grossIncome - deductible - nonTaxableIncome;
+
+		int tax = (int) Math.round(TAX_RATE * taxableIncome);
+
+        return Math.max(tax, 0);
 			 
 	}
 	
